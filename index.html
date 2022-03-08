@@ -1,16 +1,27 @@
 <html>
 
 <head>
+    <!--MDL -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css" />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100;400&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="resources/ui/icon.png" />
 
     <link rel="stylesheet" href=".\styles\mainpage.css" />
+
+    <title>Shemonimon</title>
 </head>
 
 <body class="bg">
     <script src=".\scripts\main.js"></script>
+    <script src=".\scripts\battle.js"></script>
     <!--The drawer is always open in large screens.The header is always shown, even in small screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
   mdl-layout--fixed-header">
@@ -29,7 +40,7 @@
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Shemonemon</span>
+            <img class="mdl-layout-title logo" src="./resources/ui/logo.png" alt="Shemonemon">
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="">Inventory</a>
                 <a class="mdl-navigation__link" href="">Monsters</a>
@@ -42,10 +53,11 @@
                 <p>Epically epicly epic combat log. SICK B)</p>
             </div>
             <div class="page-content mdl-grid">
+                <div class="battle-bg"></div>
                 <!-- Square card -->
-                <div class="demo-card-square mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+                <div class="demo-card-square mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col" id="ally">
                     <div class="mdl-card__title mdl-card--expand good">
-                        <h2 class="mdl-card__title-text">Not-pikachu</h2>
+                        <h2 class="mdl-card__title-text name">Loading Ally Creature</h2>
                     </div>
 
                     <div class="mdl-card__supporting-text">
@@ -53,30 +65,58 @@
                         its epic
                     </div>
 
+                    <div id="progressbar1" class="mdl-progress mdl-js-progress">
+                        <span id="hpbar1num" class="hpbartxt maxhp">Loading HP</span>
+                    </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect goodbtn">
                             Show detailed info
                         </a>
                     </div>
-
+                    <dialog class="mdl-dialog">
+                        <h4 class="mdl-dialog__title">Allow data collection?</h4>
+                        <div class="mdl-dialog__content mdl-grid">
+                            <div class="mdl-cell mdl-cell--12-col maxhp">loading hp</div>
+                            <div class="mdl-cell mdl-cell--6-col str">loading str</div>
+                            <div class="mdl-cell mdl-cell--6-col agi">loading agi</div>
+                            <div class="mdl-cell mdl-cell--6-col spd">loading spd</div>
+                            <div class="mdl-cell mdl-cell--6-col end">loading end</div>
+                            <div class="mdl-cell mdl-cell--6-col closeDetails">closing details</div>
+                            <div class="mdl-cell mdl-cell--6-col explainStats">loading stat help screen</div>
+                        </div>
+                        <button type="button" class="mdl-button close">Close</button>
+                    </dialog>
                 </div>
 
                 <div class="mdl-layout-spacer">
                 </div>
 
-                <div class="demo-card-square mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+                <div class="demo-card-square mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col" id="enemy">
                     <div class="mdl-card__title mdl-card--expand bad">
-                        <h2 class="mdl-card__title-text">Bad guy</h2>
+                        <div class="img"></div>
+                        <h2 class="mdl-card__title-text name">Loading Enemy Creature</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
 
                         Billie Eilish
+                    </div>
+                    <div id="progressbar2" class="mdl-progress mdl-js-progress">
+                        <span id="hpbar2num" class="hpbartxt maxhp">Loading HP</span>
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                             Show detailed info
                         </a>
                     </div>
+                    <dialog class="mdl-dialog">
+                        <h4 class="mdl-dialog__title">Allow data collection?</h4>
+                        <div class="mdl-dialog__content">
+                            <p>
+                                Allowing us to collect data will let us get you the information you want faster.
+                            </p>
+                        </div>
+                        <button type="button" class="mdl-button close">Close</button>
+                    </dialog>
                 </div>
             </div>
         </main>
@@ -97,15 +137,7 @@
         </footer>
     </div>
 
-    <dialog class="mdl-dialog">
-        <h4 class="mdl-dialog__title">Allow data collection?</h4>
-        <div class="mdl-dialog__content">
-            <p>
-                Allowing us to collect data will let us get you the information you want faster.
-            </p>
-        </div>
-        <button type="button" class="mdl-button close">Close</button>
-    </dialog>
+
 </body>
 
 </html>

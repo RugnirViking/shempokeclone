@@ -8,24 +8,23 @@ function Shemonemon() {
     dialog.querySelector('.close').addEventListener('click', function () {
         dialog.close();
     });
-    document.querySelector('.atkbtn').addEventListener('click', function () {
-        attack();
-    });
-    document.querySelector('.cwrdbtn').addEventListener('click', function () {
-        cowardice();
-    });
+    document.querySelector('.atkbtn').addEventListener('click', attack);
+    document.querySelector('.cwrdbtn').addEventListener('click', cowardice);
 }
+
+/* The code segment below is run when we load the page. - Samuel.How*/
 window.addEventListener('load', function () {
     Shemonemon();
+    document.querySelector('#progressbar1').addEventListener('mdl-componentupgraded',
+        function () {
+            this.MaterialProgress.setProgress(44);
+        });
+    document.querySelector('#progressbar2').addEventListener('mdl-componentupgraded',
+        function () {
+            this.MaterialProgress.setProgress(44);
+        });
+    loadBattle();
 })
-
-function attack() {
-    addToCombatLog("Attack", "#00ff00");
-}
-
-function cowardice() {
-    addToCombatLog("Cowardice", "#ff0000");
-}
 
 function addToCombatLog(text, colour) {
     let element = document.createElement("p");
