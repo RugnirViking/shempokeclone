@@ -15,14 +15,6 @@ function Shemonemon() {
 /* The code segment below is run when we load the page. - Samuel.How*/
 window.addEventListener('load', function () {
     Shemonemon();
-    document.querySelector('#progressbar1').addEventListener('mdl-componentupgraded',
-        function () {
-            this.MaterialProgress.setProgress(44);
-        });
-    document.querySelector('#progressbar2').addEventListener('mdl-componentupgraded',
-        function () {
-            this.MaterialProgress.setProgress(44);
-        });
     loadBattle();
 })
 

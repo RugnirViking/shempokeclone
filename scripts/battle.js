@@ -16,6 +16,16 @@ function loadBattle() {
     enemyElement = document.querySelector("#enemy");
     loadCreature(allyElement, window.allyCreature);
     loadCreature(enemyElement, window.enemyCreature);
+    allyElement.querySelector('#progressbar1').addEventListener('mdl-componentupgraded',
+        function () {
+            this.MaterialProgress.setProgress(window.allyCreature.hp / allyCreature.maxhp * 100);
+            window.allyHpBar = this.MaterialProgress;
+        });
+    enemyElement.querySelector('#progressbar1').addEventListener('mdl-componentupgraded',
+        function () {
+            this.MaterialProgress.setProgress(window.enemyCreature.hp / enemyCreature.maxhp * 100);
+            window.enemyHpBar = this.MaterialProgress;
+        });
 }
 
 function loadCreature(Element, Creature) {
@@ -40,13 +50,50 @@ function loadCreature(Element, Creature) {
     endElement = Element.querySelector(".end");
     endElement.innerHTML = "END: " + Creature.end;
 
-    //document.querySelector('#progressbar1').MaterialProgress.setProgress(44);
+
 }
 
 function attack() {
+    window.enemyCreature.hp = window.enemyCreature.hp - window.allyCreature.str;
     addToCombatLog("Attack", "#00ff00");
+    updateHpBar();
 }
 
 function cowardice() {
     addToCombatLog("Cowardice", "#ff0000");
+}
+
+function updateHpBar() {
+    allyElement = document.querySelector("#ally");
+    enemyElement = document.querySelector("#enemy");
+
+    window.allyHpBar.setProgress(window.allyCreature.hp / window.allyCreature.maxhp * 100);
+    window.enemyHpBar.setProgress(window.enemyCreature.hp / window.enemyCreature.maxhp * 100);
+
+    if (window.allyCreature.hp <= 0) {
+        window.allyCreature.hp = 0;
+    }
+    if (window.enemyCreature.hp <= 0) {
+        window.enemyCreature.hp = 0;
+    }
+
+    if (window.allyCreature.hp == 0) {
+        allyElement.querySelectorAll(".maxhp").forEach(element => {
+            element.innerHTML = "Fainted.";
+        });
+    } else {
+        allyElement.querySelectorAll(".maxhp").forEach(element => {
+            element.innerHTML = "HP: " + window.allyCreature.hp + "/" + window.allyCreature.maxhp;
+        });
+    }
+
+    if (window.enemyCreature.hp == 0) {
+        enemyElement.querySelectorAll(".maxhp").forEach(element => {
+            element.innerHTML = "Fainted.";
+        });
+    } else {
+        enemyElement.querySelectorAll(".maxhp").forEach(element => {
+            element.innerHTML = "HP: " + window.enemyCreature.hp + "/" + window.enemyCreature.maxhp;
+        });
+    }
 }
